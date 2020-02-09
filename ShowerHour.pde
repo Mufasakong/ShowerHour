@@ -47,6 +47,10 @@ int arrowsize = 50;
 
 int Pv = 0;
 
+import processing.sound.*;
+SoundFile button;
+SoundFile alarm;
+
 void setup(){
   size(450, 800);
   textAlign(CENTER);
@@ -59,6 +63,8 @@ void setup(){
   ValgTrin = loadImage("Valgtrin.png");
   Timer = loadImage("Timer.jpg");
   
+  button = new SoundFile(this, "Buttonpush.mp3");
+  alarm = new SoundFile(this, "Alarm.mp3");
   BackArrow = loadImage("Bck.png");
   
   stroke(255);
@@ -137,6 +143,7 @@ void mouse0Released(){
     {
       clear(); 
       SceneNr = 1;
+      button.play();
     }
 }
 
@@ -171,6 +178,7 @@ void mouse1Released(){
       clear(); 
       textx = 35;
       SceneNr = 2;
+      button.play();
     }
   }
  if (Pv >= 1) {
@@ -178,6 +186,7 @@ void mouse1Released(){
     {
       clear(); 
       SceneNr = 3;
+      button.play();
     }
  }
   if (Pv >= 2) {
@@ -185,6 +194,7 @@ void mouse1Released(){
     {
       clear(); 
       SceneNr = 3;
+      button.play();
     }
   }
   
@@ -228,6 +238,7 @@ void mouse2Released(){
       clear(); 
       //ellipse(225, 115, 155, 155);
       SceneNr = 5;
+      button.play();
     }
     
      if ((mouseX<(236+105/2)&&(mouseX>236-105/2)&&(mouseY>760-70/2)&&(mouseY<760+70/2))) 
@@ -237,11 +248,13 @@ void mouse2Released(){
       Pv++;
       }
       SceneNr = 3;
+      button.play();
     }
     if ((mouseX<(30)+50/2)&&(mouseX>(30)-50/2)&&(mouseY>((30)-50/2)&&(mouseY<(30)+50/2))) 
     {
       clear();
       SceneNr = 1;
+      button.play();
       }
     
     if ((mouseX<225+200/2)&&(mouseX>255-200/2)&&(mouseY>520-50/2)&&(mouseY<520+50/2)){
@@ -320,11 +333,13 @@ void mouse3Released(){
     {
       clear(); 
       SceneNr = 4;
+      button.play();
       }
   if ((mouseX<(30)+50/2)&&(mouseX>(30)-50/2)&&(mouseY>((30)-50/2)&&(mouseY<(30)+50/2))) 
     {
       clear();
       SceneNr = 1;
+      button.play();
       }
    }
 
@@ -373,6 +388,7 @@ void Scene4Draw() {
       sec = 0;
       minisec = 0;
       minisec2 = 0;
+      alarm.loop();
     }
     if(num2< 0){
         num1= num1- 1;
@@ -406,6 +422,8 @@ void mouse4Released(){
       minx = 0.0;
       minisec = 0.008;
       minisec2 = 0.04;
+      button.play();
+      alarm.stop();
       }
    }
    
@@ -431,22 +449,26 @@ void mouse5Released(){
     {
       clear();
       SceneNr = 2;
+      button.play();
       }
    if ((mouseX<110+200/2)&&(mouseX>110-240/2)&&(mouseY>(310-200/2)&&(mouseY<310+200/2))) 
     {
       image(loadImage("Ring.png"), 110, 310, 250, 250);
       clear();
       SceneNr = 2;
+      button.play();
     }
    if ((mouseX<335+200/2)&&(mouseX>335-200/2)&&(mouseY>(310-200/2)&&(mouseY<310+200/2))) 
     {
       image(loadImage("Ring.png"), 335, 310, 250, 250);
       clear();
       SceneNr = 2;
+      button.play();
     }
    if ((mouseX<215+200/2)&&(mouseX>215-200/2)&&(mouseY>(520-200/2)&&(mouseY<520+200/2))) 
     {
       image(loadImage("Ring.png"), 215, 520, 250, 250);
+      button.play();
     }
 }
    
