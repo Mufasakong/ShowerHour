@@ -51,6 +51,8 @@ import processing.sound.*;
 SoundFile button;
 SoundFile alarm;
 
+ArrayList<String> trin = new ArrayList<String>();
+
 void setup(){
   size(450, 800);
   textAlign(CENTER);
@@ -82,7 +84,7 @@ void setup(){
 
 
 void draw(){
-    println(Pv);
+    println(TWO_PI);
  if (SceneNr == 0){
     Scene0Draw();
  }
@@ -221,13 +223,13 @@ void Scene2Draw() {
     strokeWeight(4);
     ellipse(236, 760, 105, 70);
     
-     image(loadImage(Balsam[i1]), width/2, height/2+120, 200, 100);
-     image(loadImage(BarbereSig[i2]), width/2-155, height/2+120, 200, 100);
-     image(loadImage(BoersteTaender[i3]), width/2+155, height/2+120, 200, 100);
-     image(loadImage(Haarkur[i4]), width/2, height/2+200, 200, 100);
-     image(loadImage(Overtaenke[i5]), width/2-155, height/2+200, 200, 100);
-     image(loadImage(Shampoo[i6]), width/2+155, height/2+200, 200, 100);
-     image(loadImage(Saebe[i7]), width/2, height/2+280, 200, 100);
+    image(loadImage(Balsam[i1]), width/2, height/2+120, 200, 100);
+    image(loadImage(BarbereSig[i2]), width/2-155, height/2+120, 200, 100);
+    image(loadImage(BoersteTaender[i3]), width/2+155, height/2+120, 200, 100);
+    image(loadImage(Haarkur[i4]), width/2, height/2+200, 200, 100);
+    image(loadImage(Overtaenke[i5]), width/2-155, height/2+200, 200, 100);
+    image(loadImage(Shampoo[i6]), width/2+155, height/2+200, 200, 100);
+    image(loadImage(Saebe[i7]), width/2, height/2+280, 200, 100);
      
      
 }
@@ -258,53 +260,67 @@ void mouse2Released(){
       }
     
     if ((mouseX<225+200/2)&&(mouseX>255-200/2)&&(mouseY>520-50/2)&&(mouseY<520+50/2)){
-      if ((i1 == 0)){
+      if ((i1 == 0 && trin.size() <= 4)){
       i1 = 1;
+      trin.add("Balsam");
         } else {
       i1 = 0;
+      trin.remove("Balsam");
         }
     }
     if ((mouseX<70+200/2)&&(mouseX>70-200/2)&&(mouseY>520-50/2)&&(mouseY<520+50/2)){
-      if ((i2 == 0)){
+      if ((i2 == 0 && trin.size() <= 4)){
       i2 = 1;
+      trin.add("Barbere sig");
         } else {
       i2 = 0;
+      trin.remove("Barbere sig");
         }
     }
     if ((mouseX<380+200/2)&&(mouseX>380-200/2)&&(mouseY>520-50/2)&&(mouseY<520+50/2)){
-      if ((i3 == 0)){
+      if ((i3 == 0 && trin.size() <= 4)){
       i3 = 1;
+      trin.add("Børste Tænder");
         } else {
       i3 = 0;
+      trin.remove("Børste Tænder");
     }
     }
     
     if ((mouseX<225+200/2)&&(mouseX>255-200/2)&&(mouseY>600-50/2)&&(mouseY<600+50/2)){
-      if ((i4 == 0)){
+      if ((i4 == 0 && trin.size() <= 4)){
       i4 = 1;
+      trin.add("Hårkur");
         } else {
       i4 = 0;
+      trin.remove("Hårkur");
         }
     }
     if ((mouseX<70+200/2)&&(mouseX>70-200/2)&&(mouseY>600-50/2)&&(mouseY<600+50/2)){
-      if ((i5 == 0)){
+      if ((i5 == 0 && trin.size() <= 4)){
       i5 = 1;
+      trin.add("Overtænke");
         } else {
       i5 = 0;
+      trin.remove("Overtænke");
         }
     }
     if ((mouseX<380+200/2)&&(mouseX>380-200/2)&&(mouseY>600-50/2)&&(mouseY<600+50/2)){
-      if ((i6 == 0)){
+      if ((i6 == 0 && trin.size() <= 4)){
       i6 = 1;
+      trin.add("Shampoo");
         } else {
       i6 = 0;
+      trin.remove("Shampoo");
       }
     }
     if ((mouseX<225+200/2)&&(mouseX>225-200/2)&&(mouseY>680-50/2)&&(mouseY<680+50/2)){
-      if ((i7 == 0)){
+      if ((i7 == 0 && trin.size() <= 4)){
       i7 = 1;
+      trin.add("Sæbe");
         } else {
       i7 = 0;
+      trin.remove("Sæbe");
       }
     }
   
@@ -317,6 +333,24 @@ void Scene3Draw() {
      text('0', 95, 775);
      text('0', 135, 775);
      image(BackArrow, 30, 30, arrowsize, arrowsize);
+     textSize(16);
+     
+     if (trin.size() >= 1) {
+     text(trin.get(0), 85, 235);
+     } 
+     if (trin.size() >= 2) {
+     text(trin.get(1), 365, 235);
+     } 
+     if (trin.size() >= 3) {
+     text(trin.get(2), 225, 265);
+     } 
+     if (trin.size() >= 4) {
+     text(trin.get(3), 85, 280);
+     } 
+     if (trin.size() >= 5) {
+     text(trin.get(4), 365, 280);
+     } 
+     
      
      fill(255);
      stroke(0);
@@ -353,12 +387,80 @@ void Scene4Draw() {
     image(Timer, width/2, height/2, 450, 800);
     image(BackArrow, 30, 30, arrowsize, arrowsize);
     
-    fill(40, 50, 230);
-    arc(width/2, height/2+25, 400, 400, 0, 2, PIE);
+    if(trin.size() == 1) {
+     fill(230, 50, 40);
+     ellipse(width/2, height/2+25, 400, 400);
+     
+     textSize(20);
+     fill(255);
+     text(trin.get(0), 225, 500);
+    }
+    
+    if(trin.size() == 2) {
     fill(230, 50, 40);
-    arc(width/2, height/2+25, 400, 400, 2, 4, PIE);
+    arc(width/2, height/2+25, 400, 400, 3*PI/2, TWO_PI+PI/2);
+    fill(230, 230, 0);
+    arc(width/2, height/2+25, 400, 400, PI/2, 3*PI/2, PIE);
+    
+    textSize(20);
+    fill(255);
+    text(trin.get(0), 150, 420);
+    text(trin.get(1), 300, 420);
+    }
+    
+    if(trin.size() == 3) {
+    fill(40, 50, 230);
+    arc(width/2, height/2+25, 400, 400, QUARTER_PI/2, PI/2+PI/4+QUARTER_PI/2, PIE);
+    fill(230, 50, 40);
+    arc(width/2, height/2+25, 400, 400, PI/2+PI/4+QUARTER_PI/2, 3*PI/2, PIE);
+    fill(230, 230, 0);
+    arc(width/2, height/2+25, 400, 400, 3*PI/2, TWO_PI+PI/4-QUARTER_PI/2, PIE);
+    
+    textSize(20);
+    fill(255);
+    text(trin.get(0), 300, 420);
+    text(trin.get(1), 150, 420);
+    text(trin.get(2), 225, 500);
+    }
+    
+    if(trin.size() == 4) {
+    fill(40, 50, 230);
+    arc(width/2, height/2+25, 400, 400, 0, PI/2, PIE);
+    fill(230, 50, 40);
+    arc(width/2, height/2+25, 400, 400, PI/2, PI, PIE);
+    fill(230, 230, 0);
+    arc(width/2, height/2+25, 400, 400, PI, 3*PI/2, PIE);
     fill(50, 230, 40);
-    arc(width/2, height/2+25, 400, 400, 4, 5.5+QUARTER_PI, PIE);
+    arc(width/2, height/2+25, 400, 400, 3*PI/2, TWO_PI, PIE);
+    
+    textSize(20);
+    fill(255);
+    text(trin.get(0), 300, 400);
+    text(trin.get(1), 150, 400);
+    text(trin.get(2), 300, 480);
+    text(trin.get(3), 150, 480);
+    }
+    
+    if(trin.size() == 5) {
+    fill(40, 50, 230);
+    arc(width/2, height/2+25, 400, 400, 3*PI/2, TWO_PI-QUARTER_PI/2+0.08, PIE);
+    fill(230, 50, 40);
+    arc(width/2, height/2+25, 400, 400, TWO_PI-QUARTER_PI/2+0.08, TWO_PI+PI/4+0.16, PIE);
+    fill(230, 230, 0);
+    arc(width/2, height/2+25, 400, 400, PI/4+0.16, PI/2+QUARTER_PI/2+0.1526, PIE);
+    fill(50, 230, 40);
+    arc(width/2, height/2+25, 400, 400, PI/2+QUARTER_PI/2+0.1526, PI+QUARTER_PI/2, PIE);
+    fill(106, 13, 173);
+    arc(width/2, height/2+25, 400, 400, PI+QUARTER_PI/2, 3*PI/2, PIE);
+    
+    textSize(16);
+    fill(255);
+    text(trin.get(0), 280, 380);
+    text(trin.get(1), 170, 380);
+    text(trin.get(2), 225, 550);
+    text(trin.get(3), 310, 460);
+    text(trin.get(4), 140, 460);
+    }
     
     stroke(255);
     strokeWeight(8);
