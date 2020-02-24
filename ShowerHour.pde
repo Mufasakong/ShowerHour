@@ -29,6 +29,11 @@ int num2= 5;
 int num3= 9;
 int numx= 1;
 
+float var = 1.00;
+float var2 = 1.00;
+float var3 = 1.00;
+float var4 = 1.00;
+float var5 = 1.00;
 
 int cx, cy;
 float sec = 0;
@@ -84,7 +89,7 @@ void setup(){
 
 
 void draw(){
-    println(TWO_PI);
+    //println(TWO_PI);
  if (SceneNr == 0){
     Scene0Draw();
  }
@@ -160,6 +165,7 @@ void Scene1Draw() {
     ellipse(75, 275, 100, 100);
     fill(30);
     textSize(50);
+    textAlign(CENTER);
     text("Ramses", 250, 290);
   }
   
@@ -169,6 +175,7 @@ void Scene1Draw() {
     ellipse(75, 475, 100, 100);
     fill(255);
     textSize(50);
+    textAlign(CENTER);
     text("Ursula", 250, 490);
   }
 }
@@ -212,9 +219,11 @@ void Scene2Draw() {
   fill(0);
   textSize(50);
   if (Pv < 1) {
+  textAlign(CENTER);
   text("Ramses", width/2, height/4+75);
   //ellipse(225, 115, 155, 155);
   } else {
+    textAlign(CENTER);
     text("Ursula", width/2, height/4+75);  
   }
     
@@ -329,36 +338,114 @@ void mouse2Released(){
 void Scene3Draw() {
      image(IndstilTid, width/2, height/2, 450, 800);
      fill(0);
+     textAlign(CENTER);
+     textSize(42);
      text('5', 32, 775);
      text('0', 95, 775);
      text('0', 135, 775);
      image(BackArrow, 30, 30, arrowsize, arrowsize);
-     textSize(16);
+     textSize(25);
+     textAlign(LEFT);
      
      if (trin.size() >= 1) {
-     text(trin.get(0), 85, 235);
+     fill(0);
+     text(trin.get(0), 45, 175);
+     image(loadImage("Plus.png"), 350, 170, 35, 35);
+     image(loadImage("Minus.png"), 390, 170, 30, 30);
+     fill(230, 230, 0);
+     noStroke();
+     ellipse(20, 165, 30, 30);
      } 
      if (trin.size() >= 2) {
-     text(trin.get(1), 365, 235);
+     fill(0);
+     text(trin.get(1), 45, 205);
+     image(loadImage("Plus.png"), 350, 200, 35, 35);
+     image(loadImage("Minus.png"), 390, 200, 30, 30);
+     fill(230, 40, 50);
+     noStroke();
+     ellipse(20, 195, 30, 30);
      } 
      if (trin.size() >= 3) {
-     text(trin.get(2), 225, 265);
+     fill(0);
+     text(trin.get(2), 45, 235);
+     image(loadImage("Plus.png"), 350, 230, 35, 35);
+     image(loadImage("Minus.png"), 390, 230, 30, 30);
+     fill(40, 50, 230);
+     noStroke();
+     ellipse(20, 225, 30, 30);
      } 
      if (trin.size() >= 4) {
-     text(trin.get(3), 85, 280);
+     fill(0);
+     text(trin.get(3), 45, 265);
+     image(loadImage("Plus.png"), 350, 260, 35, 35);
+     image(loadImage("Minus.png"), 390, 260, 30, 30);
+     fill(40, 230, 50);
+     noStroke();
+     ellipse(20, 255, 30, 30);
      } 
      if (trin.size() >= 5) {
-     text(trin.get(4), 365, 280);
+     fill(0);
+     text(trin.get(4), 45, 295);
+     image(loadImage("Plus.png"), 350, 290, 35, 35);
+     image(loadImage("Minus.png"), 390, 290, 30, 30);
+     fill(106, 13, 173);
+     noStroke();
+     ellipse(20, 285, 30, 30);
      } 
      
+     //--------------------------------------------------------------------------------------------------------------------------------------------
+     stroke(255);
+     strokeWeight(2);
+     if(trin.size() == 2) {
+     fill(230, 50, 40);
+     ellipse(width/2, height/2+120, 400, 400);
+     fill(230, 230, 0);
+     arc(width/2, height/2+120, 400, 400, PI/2*var*var2, 3*PI/2*var*var2, PIE);
+     }
      
-     fill(255);
+     if(trin.size() == 3) {
+     fill(230, 50, 40);
+     ellipse(width/2, height/2+120, 400, 400);
+     fill(40, 50, 230);
+     arc(width/2, height/2+120, 400, 400, PI/2+PI/4+QUARTER_PI/2*var2, 3*PI/2*var3, PIE);
+     fill(230, 230, 0);
+     arc(width/2, height/2+120, 400, 400, 3*PI/2*var3, TWO_PI+PI/4-QUARTER_PI/2*var, PIE);
+     }
+     
+     if (trin.size() == 4) {
+     fill(230, 50, 40);
+     ellipse(width/2, height/2+120, 400, 400);
+     fill(40, 50, 230);
+     arc(width/2, height/2+120, 400, 400, PI/2*var2, PI*var3, PIE);
+     fill(50, 230, 40);
+     arc(width/2, height/2+120, 400, 400, PI*var3, 3*PI/2*var4, PIE);
+     fill(230, 230, 0);
+     arc(width/2, height/2+120, 400, 400, 3*PI/2*var4, TWO_PI*var, PIE);
+     }
+     
+     if(trin.size() == 5) {
+    fill(230, 230, 0);
+    ellipse(width/2, height/2+120, 400, 400);
+    fill(230, 50, 40);
+    arc(width/2, height/2+120, 400, 400, (TWO_PI-QUARTER_PI/2+0.08)*(var), (TWO_PI+PI/4+0.16)*(var2), PIE);
+    fill(40, 50, 230);
+    arc(width/2, height/2+120, 400, 400, (PI/4+0.16)*(var2), (PI/2+QUARTER_PI/2+0.1526)*(var3), PIE);
+    fill(50, 230, 40);
+    arc(width/2, height/2+120, 400, 400, (PI/2+QUARTER_PI/2+0.1526)*(var3), (PI+QUARTER_PI/2)*(var4), PIE);
+    fill(106, 13, 173);
+    arc(width/2, height/2+120, 400, 400, (PI+QUARTER_PI/2)*(var4), (3*PI/2)*(var5), PIE);
+    }
+    
+    if ((mouseX<225+200/2)&&(mouseX>225-200/2)&&(mouseY>520-200/2)&&(mouseY<520+200/2)) {
+    fill(255);
      stroke(0);
      strokeWeight(4);
      ellipse(225, 520, 200, 200);
      fill(0);
+     textAlign(CENTER);
      textSize(42);
      text("Start Bad", 225, 530);
+    }
   }
 
 
@@ -375,11 +462,77 @@ void mouse3Released(){
       SceneNr = 1;
       button.play();
       }
+   if (trin.size() >= 1){
+  if ((mouseX<(350)+35/2)&&(mouseX>(350)-35/2)&&(mouseY>((170)-35/2)&&(mouseY<(170)+35/2))) 
+    {
+      var = var + 0.01;
+      println(var);
+      }
+  if ((mouseX<(390)+35/2)&&(mouseX>(390)-35/2)&&(mouseY>((170)-35/2)&&(mouseY<(170)+35/2))) 
+    {
+      var = var - 0.01;
+      println(var);
+      }
+   }
+   if (trin.size() >= 2){
+  if ((mouseX<(350)+35/2)&&(mouseX>(350)-35/2)&&(mouseY>((200)-35/2)&&(mouseY<(200)+35/2))) 
+    {
+      var2 = var2 + 0.01;
+      println(var2);
+      }
+  if ((mouseX<(390)+35/2)&&(mouseX>(390)-35/2)&&(mouseY>((200)-35/2)&&(mouseY<(200)+35/2))) 
+    {
+      var2 = var2 - 0.01;
+      println(var2);
+      
+      }
+   }
+   if (trin.size() >= 3){
+  if ((mouseX<(350)+35/2)&&(mouseX>(350)-35/2)&&(mouseY>((230)-35/2)&&(mouseY<(230)+35/2))) 
+    {
+      var3 = var3 + 0.01;
+      println(var3);
+      }
+  if ((mouseX<(390)+35/2)&&(mouseX>(390)-35/2)&&(mouseY>((230)-35/2)&&(mouseY<(230)+35/2))) 
+    {
+      var3 = var3 - 0.01;
+      println(var3);
+      }
+   }
+   if (trin.size() >= 4){
+  if ((mouseX<(350)+35/2)&&(mouseX>(350)-35/2)&&(mouseY>((260)-35/2)&&(mouseY<(260)+35/2))) 
+    {
+      var4 = var4 + 0.01;
+      println(var4);
+      }
+  if ((mouseX<(390)+35/2)&&(mouseX>(390)-35/2)&&(mouseY>((260)-35/2)&&(mouseY<(260)+35/2))) 
+    {
+      var4 = var4 - 0.01;
+      println(var4);
+      }
+   }
+   if (trin.size() >= 5){
+  if ((mouseX<(350)+35/2)&&(mouseX>(350)-35/2)&&(mouseY>((290)-35/2)&&(mouseY<(290)+35/2))) 
+    {
+      var5 = var5 + 0.01;
+      println(var5);
+      }
+  if ((mouseX<(390)+35/2)&&(mouseX>(390)-35/2)&&(mouseY>((290)-35/2)&&(mouseY<(290)+35/2))) 
+    {
+      var5 = var5 - 0.01;
+      println(var5);
+      }
+   }
+   
+   
+      
    }
 
 void Scene4Draw() {
     float s = map(secx, 0, 60, 0, TWO_PI) - HALF_PI;
-  
+    
+    stroke(255);
+    strokeWeight(2);
     fill(0, 150, 150);
     ellipse(width/2, height/2, 450, 450);
     fill(255);
@@ -388,79 +541,54 @@ void Scene4Draw() {
     image(BackArrow, 30, 30, arrowsize, arrowsize);
     
     if(trin.size() == 1) {
-     fill(230, 50, 40);
+     fill(230, 230, 0);
      ellipse(width/2, height/2+25, 400, 400);
      
-     textSize(20);
-     fill(255);
-     text(trin.get(0), 225, 500);
     }
-    
+    //..............................................................................................................................................
     if(trin.size() == 2) {
     fill(230, 50, 40);
-    arc(width/2, height/2+25, 400, 400, 3*PI/2, TWO_PI+PI/2);
-    fill(230, 230, 0);
-    arc(width/2, height/2+25, 400, 400, PI/2, 3*PI/2, PIE);
+     ellipse(width/2, height/2+25, 400, 400);
+     fill(230, 230, 0);
+     arc(width/2, height/2+25, 400, 400, PI/2*var*var2, 3*PI/2*var*var2, PIE);
     
-    textSize(20);
-    fill(255);
-    text(trin.get(0), 150, 420);
-    text(trin.get(1), 300, 420);
     }
     
     if(trin.size() == 3) {
-    fill(40, 50, 230);
-    arc(width/2, height/2+25, 400, 400, QUARTER_PI/2, PI/2+PI/4+QUARTER_PI/2, PIE);
     fill(230, 50, 40);
-    arc(width/2, height/2+25, 400, 400, PI/2+PI/4+QUARTER_PI/2, 3*PI/2, PIE);
-    fill(230, 230, 0);
-    arc(width/2, height/2+25, 400, 400, 3*PI/2, TWO_PI+PI/4-QUARTER_PI/2, PIE);
+     ellipse(width/2, height/2+25, 400, 400);
+     fill(40, 50, 230);
+     arc(width/2, height/2+25, 400, 400, PI/2+PI/4+QUARTER_PI/2*var2, 3*PI/2*var3, PIE);
+     fill(230, 230, 0);
+     arc(width/2, height/2+25, 400, 400, 3*PI/2*var3, TWO_PI+PI/4-QUARTER_PI/2*var, PIE);
     
-    textSize(20);
-    fill(255);
-    text(trin.get(0), 300, 420);
-    text(trin.get(1), 150, 420);
-    text(trin.get(2), 225, 500);
     }
     
     if(trin.size() == 4) {
-    fill(40, 50, 230);
-    arc(width/2, height/2+25, 400, 400, 0, PI/2, PIE);
     fill(230, 50, 40);
-    arc(width/2, height/2+25, 400, 400, PI/2, PI, PIE);
-    fill(230, 230, 0);
-    arc(width/2, height/2+25, 400, 400, PI, 3*PI/2, PIE);
-    fill(50, 230, 40);
-    arc(width/2, height/2+25, 400, 400, 3*PI/2, TWO_PI, PIE);
+     ellipse(width/2, height/2+25, 400, 400);
+     fill(40, 50, 230);
+     arc(width/2, height/2+25, 400, 400, PI/2*var2, PI*var3, PIE);
+     fill(50, 230, 40);
+     arc(width/2, height/2+25, 400, 400, PI*var3, 3*PI/2*var4, PIE);
+     fill(230, 230, 0);
+     arc(width/2, height/2+25, 400, 400, 3*PI/2*var4, TWO_PI*var, PIE);
     
-    textSize(20);
-    fill(255);
-    text(trin.get(0), 300, 400);
-    text(trin.get(1), 150, 400);
-    text(trin.get(2), 300, 480);
-    text(trin.get(3), 150, 480);
     }
     
     if(trin.size() == 5) {
-    fill(40, 50, 230);
-    arc(width/2, height/2+25, 400, 400, 3*PI/2, TWO_PI-QUARTER_PI/2+0.08, PIE);
-    fill(230, 50, 40);
-    arc(width/2, height/2+25, 400, 400, TWO_PI-QUARTER_PI/2+0.08, TWO_PI+PI/4+0.16, PIE);
     fill(230, 230, 0);
-    arc(width/2, height/2+25, 400, 400, PI/4+0.16, PI/2+QUARTER_PI/2+0.1526, PIE);
+    ellipse(width/2, height/2+25, 400, 400);
+    fill(230, 50, 40);
+    arc(width/2, height/2+25, 400, 400, (TWO_PI-QUARTER_PI/2+0.08)*(var), (TWO_PI+PI/4+0.16)*(var2), PIE);
+    fill(40, 50, 230);
+    arc(width/2, height/2+25, 400, 400, (PI/4+0.16)*(var2), (PI/2+QUARTER_PI/2+0.1526)*(var3), PIE);
     fill(50, 230, 40);
-    arc(width/2, height/2+25, 400, 400, PI/2+QUARTER_PI/2+0.1526, PI+QUARTER_PI/2, PIE);
+    arc(width/2, height/2+25, 400, 400, (PI/2+QUARTER_PI/2+0.1526)*(var3), (PI+QUARTER_PI/2)*(var4), PIE);
     fill(106, 13, 173);
-    arc(width/2, height/2+25, 400, 400, PI+QUARTER_PI/2, 3*PI/2, PIE);
-    
-    textSize(16);
-    fill(255);
-    text(trin.get(0), 280, 380);
-    text(trin.get(1), 170, 380);
-    text(trin.get(2), 225, 550);
-    text(trin.get(3), 310, 460);
-    text(trin.get(4), 140, 460);
+    arc(width/2, height/2+25, 400, 400, (PI+QUARTER_PI/2)*(var4), (3*PI/2)*(var5), PIE);
     }
+    
     
     stroke(255);
     strokeWeight(8);
@@ -503,9 +631,51 @@ void Scene4Draw() {
     }
     
     fill(0);
+    textSize(48);
     text(num1, 170, 775);
     text(num2, 240, 775);
     text(num3, 280, 775); 
+    
+    textAlign(LEFT);
+    textSize(25);
+     
+     if (trin.size() >= 1) {
+     fill(0);
+     text(trin.get(0), 45+200, 175-120);
+     fill(230, 230, 0);
+     noStroke();
+     ellipse(20+200, 165-120, 30, 30);
+     } 
+     if (trin.size() >= 2) {
+     fill(0);
+     text(trin.get(1), 45+200, 205-120);
+     fill(230, 40, 50);
+     noStroke();
+     ellipse(20+200, 195-120, 30, 30);
+     } 
+     if (trin.size() >= 3) {
+     fill(0);
+     text(trin.get(2), 45+200, 235-120);
+     fill(40, 50, 230);
+     noStroke();
+     ellipse(20+200, 225-120, 30, 30);
+     } 
+     if (trin.size() >= 4) {
+     fill(0);
+     text(trin.get(3), 45+200, 265-120);
+     fill(40, 230, 50);
+     noStroke();
+     ellipse(20+200, 255-120, 30, 30);
+     } 
+     if (trin.size() >= 5) {
+     fill(0);
+     text(trin.get(4), 45+200, 295-120);
+     fill(106, 13, 173);
+     noStroke();
+     ellipse(20+200, 285-120, 30, 30);
+     } 
+     
+     textAlign(CENTER);
 }
 
 void mouse4Released(){
